@@ -8,6 +8,10 @@ def ff():
 
 ff()
 
+def allow(textDocument):
+    pass
+
+
 
 
 
