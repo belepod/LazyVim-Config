@@ -11,7 +11,8 @@ ff()
 def allow(textDocument):
     pass
 
-
+def flao(textDocument):
+    pass
 
 
 
