@@ -12,4 +12,7 @@ return {
       vim.cmd.colorscheme("sonokai")
     end,
   },
+  {
+    "folke/tokyonight.nvim",
+  },
 }
