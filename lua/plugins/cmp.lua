@@ -1,16 +1,15 @@
 -- ~/nvim/lua/plugins/cmp.lua
-
 return {
   "hrsh7th/nvim-cmp",
-  enabled = "true",
+  enabled = true,
   event = "InsertEnter",
   dependencies = {
-    "hrsh7th/cmp-buffer",           -- source for text in buffer
-    "hrsh7th/cmp-path",             -- source for filesystem paths
-    "hrsh7th/cmp-nvim-lsp",         -- source for LSP
-    "L3MON4D3/LuaSnip",             -- snippet engine
-    "rafamadriz/friendly-snippets", -- useful snippets
-    "onsails/lspkind.nvim",         -- VSCode-like pictograms
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
+    "hrsh7th/cmp-nvim-lsp",
+    "L3MON4D3/LuaSnip",
+    "rafamadriz/friendly-snippets",
+    "onsails/lspkind.nvim",
   },
   config = function()
     local cmp = require("cmp")
@@ -30,10 +29,7 @@ return {
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.close(),
-        ["<C-Tab"] = cmp.mapping.confirm({
-          behavior = cmp.ConfirmBehavior.Replace,
-          select = true,
-        }),
+        ["<C-Tab>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
         ["<Tab>"] = cmp.mapping(function(fallback)
           if luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
@@ -59,16 +55,10 @@ return {
         { name = "buffer" },
         { name = "path" },
       }),
-      formatting = {
-        format = lspkind.cmp_format({
-          mode = "symbol_text",
-          maxwidth = 50,
-          ellipsis_char = "…",
-        }),
-      },
-      experimental = {
-        ghost_text = true,
-      },
+      formatting = lspkind and {
+        format = lspkind.cmp_format({ mode = "symbol_text", maxwidth = 50, ellipsis_char = "…" }),
+      } or nil,
+      experimental = { ghost_text = true },
     })
 
     vim.cmd([[
